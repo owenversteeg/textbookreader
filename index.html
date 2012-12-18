@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Textbook Reader</title>
+<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||
+[]);
+mixpanel.init("d1e8d75933581c403138c22a2753b747");</script><!-- end Mixpanel -->
+<style type="text/css">
+.pagenum {
+    width: 33px;    
+    height: 34px !important;  
+    margin-top: 10px !important;
+}
+
+iframe {
+    height: 1000px;
+    width: 100%;
+}
+.center{
+    text-align: center;
+}
+
+.btn {
+    margin: 5px !important;            
+}
+​
+</style>
+</head>
+<body>
+<script src="http://eightmedia.github.com/hammer.js/hammer.js"></script>
+
+<script type="text/javascript">    
+    var cPage = 1;
+    function goToPg(where) {
+        if (where == "prev") { cPage--; }
+        else if (where == "next") { cPage++; }
+        else { cPage = where; }
+    
+        $('#book')[0].src="http://www.classzone.com/cz/books/wh_survey05/secured/resources/applications/ebook/accessibility/patterns_survey/page_"+cPage+".pdf";
+    }
+</script>
+
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+<div class="center" id="top">
+    <button class="btn btn-large btn-primary" onclick="goToPg('prev')" type="button">&lt;</button>
+    <input class="pagenum" type="text" onkeypress="if(event.keyCode == 13 || event.characterCode == 13) { goToPg(this.value); }" />
+    <button class="btn btn-large btn-primary" onclick="goToPg('next')" type="button">&gt;</button>
+</div>
+
+<iframe id="book" src="http://www.classzone.com/cz/books/wh_survey05/secured/resources/applications/ebook/accessibility/patterns_survey/page_1.pdf"></iframe>
+
+<script type="text/javascript">
+    var hammer = new Hammer(document.getElementById("top"));
+    hammer.onswipe = function(ev) { if (ev.direction == "left") { goToPg("next"); } if (ev.direction == "right") { goToPg("prev"); } };
+</script>
+​
+</body>
+</html>
