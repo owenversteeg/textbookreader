@@ -38,7 +38,7 @@ iframe {
         else if (where == "next") { cPage++; }
         else { cPage = where; }
         
-        Mixpanel.track("goToPg",{"where": where, "name": name, "page": cPage, "type": type});
+        mixpanel.track("goToPg",{"where": where, "name": name, "page": cPage, "type": type});
     
         $('#book')[0].src="http://www.classzone.com/cz/books/wh_survey05/secured/resources/applications/ebook/accessibility/patterns_survey/page_"+cPage+".pdf";
     }
