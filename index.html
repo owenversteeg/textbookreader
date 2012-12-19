@@ -185,7 +185,7 @@ BrowserDetect.init();
 </script>
 <script type="text/javascript">
 function gLIP() {
-    $.getJSON("http://jsonip.appspot.com?callback=?",
+    $.getJSON("http://www.bigrectangle.com/scripts/getip.php",
     function(data){ ip=data.ip.toString();
       console.log(ip);
       mixpanel.track("pageload", {"name": name, "ipaddr": ip.toString(), "screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
