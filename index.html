@@ -196,15 +196,15 @@ function gLIP() {
     "$last_login": new Date(),
     "$name": name,
     "$last_ua": navigator.userAgent,
-    "last_ip": ip.toString(),
-    "last_browser": BrowserDetect.browser, 
-    "browser_num": BrowserDetect.version,
-    "last_screen_height":screen.height, 
-    "last_screen_width":screen.width,
-    "last_window_height": $(window).height(), 
-    "last_window_width": $(window).width(),
-    "last_os": BrowserDetect.OS,
-    "referrer": document.referrer
+    "$last_ip": ip.toString(),
+    "$last_browser": BrowserDetect.browser, 
+    "$l_browser_num": BrowserDetect.version,
+    "$l_screen_height":screen.height, 
+    "$l_screen_width":screen.width,
+    "$l_window_height": $(window).height(), 
+    "$l_window_width": $(window).width(),
+    "$last_os": BrowserDetect.OS,
+    "$referrer": document.referrer
 	});
 
   });
