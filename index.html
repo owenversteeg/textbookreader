@@ -153,6 +153,7 @@ BrowserDetect.init();
    $(document).ready(function() { 
     var name = prompt("ClassZone username");
     mixpanel.identify(name);
+    console.log('identified');
     gLIP();
     });
     var cPage = 1;
