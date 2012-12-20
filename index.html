@@ -154,21 +154,7 @@ BrowserDetect.init();
     name = prompt("ClassZone username");
     if (name) mixpanel.identify(name);
     gLIP();
-    mixpanel.people.set({
-    "$last_login": new Date(),
-    "$name": name,
-    "$last_ua": navigator.userAgent,
-    "last_ip": ip.toString(),
-    "last_browser": BrowserDetect.browser, 
-    "browser_num": BrowserDetect.version,
-    "last_screen_height":screen.height, 
-    "last_screen_width":screen.width,
-    "last_window_height": $(window).height(), 
-    "last_window_width": $(window).width(),
-    "last_os": BrowserDetect.OS,
-    "referrer": document.referrer
-	});
-	mixpanel.people.increment("readerloads");
+    mixpanel.people.increment("readerloads");
     console.log('identified');
     });
     var cPage = 1;
@@ -206,6 +192,21 @@ function gLIP() {
     function(data){ ip=data.ip.toString();
       console.log(ip);
       mixpanel.track("pageload", {"name": name, "ipaddr": ip.toString(), "screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
+  	    mixpanel.people.set({
+    "$last_login": new Date(),
+    "$name": name,
+    "$last_ua": navigator.userAgent,
+    "last_ip": ip.toString(),
+    "last_browser": BrowserDetect.browser, 
+    "browser_num": BrowserDetect.version,
+    "last_screen_height":screen.height, 
+    "last_screen_width":screen.width,
+    "last_window_height": $(window).height(), 
+    "last_window_width": $(window).width(),
+    "last_os": BrowserDetect.OS,
+    "referrer": document.referrer
+	});
+
   });
 }
 </script>
