@@ -153,6 +153,7 @@ BrowserDetect.init();
    $(document).ready(function() { 
     name = prompt("ClassZone username");
     if (name) mixpanel.identify(name);
+    gLIP();
     mixpanel.people.set({
     "$last_login": new Date(),
     "$name": name,
@@ -169,7 +170,6 @@ BrowserDetect.init();
 	});
 	mixpanel.people.increment("readerloads");
     console.log('identified');
-    gLIP();
     });
     var cPage = 1;
     function goToPg(where, type) {
