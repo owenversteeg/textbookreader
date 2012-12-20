@@ -155,8 +155,10 @@ BrowserDetect.init();
     mixpanel.identify(name);
     mixpanel.people.set({
     "$last_login": new Date(),
-    "$name": name
+    "$name": name,
+    "referrer": document.referrer
 	});
+	mixpanel.people.increment("uses");
     console.log('identified');
     gLIP();
     });
