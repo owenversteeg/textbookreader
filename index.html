@@ -154,7 +154,8 @@ BrowserDetect.init();
     var name = prompt("ClassZone username");
     mixpanel.identify(name);
     mixpanel.people.set({
-    "$last_use": new Date()
+    "$last_login": new Date(),
+    "$name": name
 	});
     console.log('identified');
     gLIP();
