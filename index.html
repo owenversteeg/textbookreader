@@ -151,19 +151,29 @@ var BrowserDetect = {
 BrowserDetect.init();
 
    $(document).ready(function() { 
-    var name = prompt("ClassZone username");
+    name = prompt("ClassZone username");
     mixpanel.identify(name);
     mixpanel.people.set({
     "$last_login": new Date(),
     "$name": name,
+    "$last_ua": navigator.userAgent,
+    "last_ip": ip.toString(),
+    "last_browser": BrowserDetect.browser, 
+    "browser_num": BrowserDetect.version,
+    "last_screen_height":screen.height, 
+    "last_screen_width":screen.width,
+    "last_window_height": $(window).height(), 
+    "last_window_width": $(window).width(),
+    "last_os": BrowserDetect.OS,
     "referrer": document.referrer
 	});
-	mixpanel.people.increment("uses");
+	mixpanel.people.increment("readerloads");
     console.log('identified');
     gLIP();
     });
     var cPage = 1;
     function goToPg(where, type) {
+    	mixpanel.people.increment("pagesviewed");
         if (where == "prev") { cPage--; }
         else if (where == "next") { cPage++; }
         else { cPage = where; }
@@ -189,7 +199,6 @@ BrowserDetect.init();
 <script type="text/javascript">
     var hammer = new Hammer(document.getElementById("top"));
     hammer.onswipe = function(ev) { if (ev.direction == "left") { goToPg("next",'swipe'); } if (ev.direction == "right") { goToPg("prev",'swipe'); } };
-    var ip;    
 </script>
 <script type="text/javascript">
 function gLIP() {
