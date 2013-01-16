@@ -151,7 +151,7 @@ var BrowserDetect = {
 BrowserDetect.init();
 
    $(document).ready(function() { 
-    name = prompt("ClassZone username");
+    name = prompt("Enter your ClassZone username - or, if you do not have one, your last name.");
     if (name) mixpanel.identify(name);
     gLIP();
     mixpanel.people.increment("readerloads");
