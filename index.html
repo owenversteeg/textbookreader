@@ -46,9 +46,9 @@
    </head>
    <body>
       <div class="controls center" id="top">
-         <button class="btn btn-large btn-primary" onclick="goToPg('prev','button')" type="button">&lt;</button>
+         <button class="btn btn-large btn-primary" onclick="goToPg('prev','button')" type="button" style="margin-right: 8px !important;">&lt;</button>
          <input class="pagenum center" type="text" onkeypress="if(event.keyCode == 13 || event.characterCode == 13) { goToPg(this.value,'textbox'); }" value="1" />
-         <button class="btn btn-large btn-primary" onclick="goToPg('next')" type="button">&gt;</button><br>
+         <button class="btn btn-large btn-primary" onclick="goToPg('next')" type="button" style="margin-right: 8px !important;">&gt;</button><br>
          <button class="btn btn-info" onclick="showToC();" id="toc" type="button" data-original-title="Table of Contents">Table of Contents</button>
       </div>
 
