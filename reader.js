@@ -197,6 +197,7 @@ hammer.onswipe = function(ev) {
    }
 };
 
+/*
 function showToC() {
    $("#toc").popover('show');
    $.ajax({
@@ -215,3 +216,4 @@ function showToC() {
       }
    });
 }
+*/
