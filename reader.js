@@ -119,8 +119,8 @@ BrowserDetect.init();
 
 //Onload
 $(document).ready(function() {
-   // name = prompt("Enter your ClassZone username - or, if you do not have one, your last name.");
-   // if (name) mixpanel.identify(name);
+   name = prompt("Enter your ClassZone username - or, if you do not have one, your last name.");
+   if (name) mixpanel.identify(name);
    gLIP();
    mixpanel.people.increment("readerloads");
    console.log('identified');
@@ -137,11 +137,14 @@ var cPage = 1;
 function goToPg(where, type) {
    console.log($('#book')[0].contentWindow.location);
    mixpanel.people.increment("pagesviewed");
-   if (where == "prev") { cPage--; }
-   else if (where == "next") { cPage++; }
-   else { cPage = where; }
+   if (where == "prev")
+      cPage --;
+   else if (where == "next")
+      cPage ++;
+   else
+      cPage = where;
 
-   mixpanel.track("goToPg",{"where": where,/* "name": name,*/ "page": cPage, "type": type});
+   mixpanel.track("goToPg",{"where": where, "name": name, "page": cPage, "type": type});
 
    $('.pagenum').val(cPage);
 
@@ -167,10 +170,10 @@ function gLIP() {
    $.getJSON("http://www.bigrectangle.com/scripts/getip.php",
       function(data){ ip=data.ip.toString();
          console.log(ip);
-         mixpanel.track("pageload", {/*"name": name, */"ipaddr": ip.toString(), "screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
+         mixpanel.track("pageload", {"name": name, "ipaddr": ip.toString(), "screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
          mixpanel.people.set({
             "$last_login": new Date(),
-            /*"$name": name,*/
+            "$name": name,
             "$last_ua": navigator.userAgent,
             "$last_ip": ip.toString(),
             "$last_browser": BrowserDetect.browser,
