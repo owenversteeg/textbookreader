@@ -13,14 +13,15 @@ mixpanel.init("d1e8d75933581c403138c22a2753b747");</script><!-- end Mixpanel -->
     height: 34px !important;  
     margin-top: 10px !important;
 }
-
+img {
+	display: none;
+}
 iframe {
-	height: 100%;
+	height: 89%;
 	width: 100%;
 	position: absolute;
-	padding-top: 64px;
 	box-sizing: border-box;
-	top: 0;
+	top: 64px;
 	left: 0;
 	border: none;
 }
@@ -215,6 +216,8 @@ function gLIP() {
 
   });
 }
+
+$('#book')[0].style.height = ($(window).height())+"px"
 </script>
 <a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
 </body>
