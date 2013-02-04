@@ -124,9 +124,7 @@ $(document).ready(function() {
    gLIP();
    mixpanel.people.increment("readerloads");
    console.log('identified');
-   document.body.onresize = function() {
-      $("#book").css("height", $(window).height() - 64);
-   };
+   $("#book").css("height", $(window).height() - 64);
 });
 
 //Go to page
@@ -200,3 +198,7 @@ hammer.onswipe = function(ev) {
 function showToC() {
    $("#book")[0].src = "http://www.classzone.com/cz/books/wh_survey05/secured/resources/applications/ebook/accessibility/patterns_survey/toc.html";
 }
+
+document.body.onresize = function() {
+   $("#book").css("height", $(window).height() - 64);
+};
