@@ -16,6 +16,8 @@ function formatPage($page) {
 		return "A" . $intVal;
 	if ($prefix === "s")
 		return "S" . $intVal;
+	if ($prefix === "x" || $prefix === "v" || $prefix === "i")
+		return $page;
 	return intVal($page);
 }
 

@@ -136,11 +136,40 @@ $(document).resize(function () {
 	$("#book").css("height", $(window).height() - 64);
 });
 
+//http://blog.stevenlevithan.com/archives/javascript-roman-numeral-converter
+function romanize (num) {
+	if (!+num)
+		return false;
+	var	digits = String(+num).split(""),
+		key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+		       "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+		       "","I","II","III","IV","V","VI","VII","VIII","IX"],
+		roman = "",
+		i = 3;
+	while (i--)
+		roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+	return Array(+digits.join("") + 1).join("M") + roman;
+}
+
+function deromanize (str) {
+	var	str = str.toUpperCase(),
+		validator = /^M*(?:D?C{0,3}|C[MD])(?:L?X{0,3}|X[CL])(?:V?I{0,3}|I[XV])$/,
+		token = /[MDLV]|C[MD]?|X[CL]?|I[XV]?/g,
+		key = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},
+		num = 0, m;
+	if (!(str && validator.test(str)))
+		return false;
+	while (m = token.exec(str))
+		num += key[m[0]];
+	return num;
+}
+
 function pageToStr(page) {
-	var aboutStart = 0;
-	var stratStart = 47;
-	var bodyStart  = 81;
-	var refStart   = 1187;
+	var preStart   = 0;
+	var aboutStart = 37;
+	var stratStart = 84;
+	var bodyStart  = 118;
+	var refStart   = 1224;
 
 	if (typeof page !== "number") //Non-number values are disregarded
 		return "C";
@@ -155,15 +184,18 @@ function pageToStr(page) {
 		return "S" + (page - stratStart);
 	if (page > aboutStart)
 		return "A" + (page - aboutStart);
+	if (page > preStart)
+		return romanize(page - preStart).toLowerCase();
 	return "C"; //At this point, the page is probably -1 or something. Just give them the cover.
 }
 
 function strToPage(str) {
 	var cover = 0;
-	var aboutStart = 0;
-	var stratStart = 47;
-	var bodyStart = 81;
-	var refStart = 1187;
+	var preStart   = 0;
+	var aboutStart = 37;
+	var stratStart = 84;
+	var bodyStart  = 118;
+	var refStart   = 1224;
 
 	if (typeof str === "number") //Number values are body page numbers
 		return str + bodyStart;
@@ -177,7 +209,7 @@ function strToPage(str) {
 	if (str.toLowerCase() === "cover")
 		return cover;
 
-	var prefix = str.substring(0, 1);
+	var prefix = str.substring(0, 1).toUpperCase();
 	var stripped = parseInt(str.substring(1));
 	if (prefix === "C")
 		return cover;
@@ -187,6 +219,9 @@ function strToPage(str) {
 		return stripped + stratStart;
 	if (prefix === "A")
 		return stripped + aboutStart;
+	if (prefix === "X" || prefix === "V" || prefix === "I")
+		return deromanize(str) + preStart;
+
 	return parseInt(str) + bodyStart; //At this point, it's a body page
 }
 
@@ -202,8 +237,8 @@ function goToPg(where, type) {
 
    if (cPage < 0)
 	   cPage = 0;
-   if (cPage > 1335)
-   	cPage = 1335;
+   if (cPage > 1382)
+   	cPage = 1382;
 
 
 /*
