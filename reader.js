@@ -132,6 +132,10 @@ $(document).ready(function() {
    $("#book").css("height", $(window).height() - 64);
 });
 
+$(document).resize(function () {
+	$("#book").css("height", $(window).height() - 64);
+});
+
 function pageToStr(page) {
 	var aboutStart = 0;
 	var stratStart = 47;
