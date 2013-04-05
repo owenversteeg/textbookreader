@@ -1,0 +1,4 @@
+*.pdf
+*.result.html
+.DS_Store
+pdf/*
